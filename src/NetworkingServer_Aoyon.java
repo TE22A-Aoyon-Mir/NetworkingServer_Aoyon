@@ -10,7 +10,7 @@ public class NetworkingServer_Aoyon {
         Socket client;
 
         // Default port number we are going to use
-        int portnumber = 1234;
+        int portnumber = 1025;
         if (args.length >= 1){
             portnumber = Integer.parseInt(args[0]);
         }
@@ -43,6 +43,9 @@ public class NetworkingServer_Aoyon {
                 BufferedReader br = new BufferedReader(new InputStreamReader(clientIn));
                 String msgFromClient = br.readLine();
                 System.out.println("Message received from client = " + msgFromClient);
+                // Closes the stream and BufferedReader
+                clientIn.close();
+                br.close();
 
                 // Send response to the client
                 if(msgFromClient != null && !msgFromClient.equalsIgnoreCase("bye")){
